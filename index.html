@@ -36,6 +36,7 @@
       margin-bottom: 25px;
       border: 5px solid #8eacbb;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
     }
 
     h2 {
@@ -83,8 +84,7 @@
 <body>
 
   <div class="card">
-    <!-- L'immagine generata è inserita qui sotto -->
-    <img src="http://googleusercontent.com/image_generation_content/watermarked_img_13668244282239496709.png" alt="Sweet dogs eating pasta" class="meme-img">
+    <img id="main-img" src="http://googleusercontent.com/image_generation_content/watermarked_img_13668244282239496709.png" alt="Sweet dogs eating pasta" class="meme-img">
     
     <h2>What do you think if, as soon as we find a job, we organize a weekend just for us to get to know each other better?</h2>
     
@@ -96,29 +96,31 @@
 
   <script>
     const btnNo = document.getElementById('btn-no');
+    const mainImg = document.getElementById('main-img');
 
-    // Fa scappare il bottone al passaggio del mouse
     btnNo.addEventListener('mouseover', scappa);
-    
-    // Protezione per i telefoni
     btnNo.addEventListener('touchstart', (e) => {
       e.preventDefault();
       scappa();
     });
 
     function scappa() {
-      // Calcola posizioni casuali all'interno della finestra del browser
       const x = Math.random() * (window.innerWidth - 200);
       const y = Math.random() * (window.innerHeight - 100);
       
-      // Applica le nuove coordinate al bottone "NO"
       btnNo.style.position = 'fixed';
       btnNo.style.left = x + 'px';
       btnNo.style.top = y + 'px';
     }
 
     function rispostaCorretta() {
-      alert('I knew I was important to you, further info will be provided soon.');
+      // Qui ora carica la foto corretta dei cani che si baciano con i cuoricini
+      mainImg.src = "http://googleusercontent.com/image_generation_content/watermarked_img_5800478843122961985.png";
+      mainImg.style.borderColor = "#ff4757"; 
+      
+      setTimeout(() => {
+        alert('I knew I was important to you.');
+      }, 300);
     }
   </script>
 
