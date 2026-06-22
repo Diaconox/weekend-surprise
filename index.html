@@ -49,6 +49,7 @@
     .btn-container {
       display: flex;
       justify-content: center;
+      align-items: center; /* Assicura l'allineamento verticale perfetto */
       gap: 20px;
       position: relative;
       height: 60px;
@@ -62,6 +63,7 @@
       cursor: pointer;
       transition: background-color 0.3s, transform 0.1s;
       font-family: 'Verdana', sans-serif;
+      white-space: nowrap; /* Impedisce al testo di andare a capo in modo strano */
     }
 
     #btn-si {
@@ -76,15 +78,13 @@
     #btn-no {
       background-color: #e6dfc8;
       color: #5f4b3e;
-      position: absolute;
-      left: 55%;
+      /* Rimosso il posizionamento assoluto iniziale per tenerlo perfettamente allineato */
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <!-- Punta direttamente al file caricato di fianco -->
     <img id="main-img" src="pasta.png" alt="Sweet dogs eating pasta" class="meme-img">
     
     <h2>What do you think if, as soon as we find a job, we organize a weekend just for us to get to know each other better?</h2>
@@ -106,16 +106,20 @@
     });
 
     function scappa() {
-      const x = Math.random() * (window.innerWidth - 200);
-      const y = Math.random() * (window.innerHeight - 100);
+      // Calcola i limiti massimi per evitare che il pulsante esca dallo schermo
+      const maxX = window.innerWidth - 200;
+      const maxY = window.innerHeight - 100;
       
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      
+      // Diventa 'fixed' solo ora che deve iniziare a scappare, liberandosi dal contenitore
       btnNo.style.position = 'fixed';
       btnNo.style.left = x + 'px';
       btnNo.style.top = y + 'px';
     }
 
     function rispostaCorretta() {
-      // Cambia l'immagine con il file locale del bacio
       mainImg.src = "bacio.png";
       mainImg.style.borderColor = "#ff4757"; 
       
